@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 import {
   Card,
@@ -21,13 +21,13 @@ import { auth, db } from "../../firebaseConfig";
 const RegisterScreen = () => {
   const router = useRouter();
   const { isLoading } = useAuthStatus();
-  const [firstName, setFirstName] = React.useState("");
-  const [lastName, setLastName] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [passwordConfirm, setPasswordConfirm] = React.useState("");
-  const [cgu, setCGU] = React.useState(false);
-  const [visibleDialog, showDialog] = React.useState({
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [cgu, setCGU] = useState(false);
+  const [visibleDialog, showDialog] = useState({
     visible: false,
     message: "",
   });

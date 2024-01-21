@@ -7,16 +7,52 @@ import {
   Button,
   Input,
   Avatar,
+  Spinner,
 } from "@ui-kitten/components";
-import { useState } from "react";
-import { auth } from "../../../firebaseConfig";
+import { useEffect, useState } from "react";
+import { auth, db } from "../../../firebaseConfig";
+import { RemoveAccountDialog } from "../../../components/RemoveAccountDialog";
+import { doc, getDoc } from "firebase/firestore";
 
 export default function TabAccountScreen() {
+  const user = auth.currentUser;
+  const [loading, setLoading] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState(auth.currentUser?.email);
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [visibleDialog, showDialog] = useState({
+    visible: false,
+  });
+
+  useEffect(() => {
+    if (!user) return;
+    const userDocRef = doc(db, "users", user.uid);
+    getDoc(userDocRef)
+      .then((userDocSnap) => {
+        if (userDocSnap.exists()) {
+          const userData = userDocSnap.data();
+          setFirstName(userData.firstName);
+          setLastName(userData.lastName);
+          setEmail(user.email || "");
+        }
+      })
+      .finally(() => {
+        setLoading(true);
+      });
+  }, []);
+
+  if (!loading) {
+    return (
+      <Layout style={styles.container}>
+        <Spinner size="giant" />
+        <Text style={styles.text}>
+          Chargement de vos informations personnelles ...
+        </Text>
+      </Layout>
+    );
+  }
 
   return (
     <ScrollView style={{ flex: 1 }}>
@@ -58,7 +94,7 @@ export default function TabAccountScreen() {
           <Input
             label="Adresse mail"
             placeholder="Entre votre adresse mail"
-            value={email || "Erreur de chargement"}
+            value={email}
             onChangeText={setEmail}
             style={styles.marginBottom}
           />
@@ -91,9 +127,20 @@ export default function TabAccountScreen() {
           <Divider style={styles.marginBottom} />
           <Button size="small">Enregistrer</Button>
         </Card>
-        <Button size="small" status='danger' style={styles.marginBottom}>
+        <Button
+          size="small"
+          status="danger"
+          style={styles.marginBottom}
+          onPress={() => {
+            showDialog({ visible: true });
+          }}
+        >
           Supprimer mon compte
         </Button>
+        <RemoveAccountDialog
+          visible={visibleDialog.visible}
+          onClose={() => showDialog({ visible: false })}
+        />
       </Layout>
     </ScrollView>
   );
@@ -117,5 +164,8 @@ const styles = StyleSheet.create({
   },
   marginBottom: {
     marginBottom: 15,
+  },
+  text: {
+    marginTop: 20,
   },
 });

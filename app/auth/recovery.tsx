@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 import {
   Card,
@@ -19,9 +19,9 @@ import { auth } from "../../firebaseConfig";
 const RecoveryScreen = () => {
   const router = useRouter();
   const { isLoading } = useAuthStatus();
-  const [email, setEmail] = React.useState("");
-  const [recovery, setRecovery] = React.useState(false);
-  const [visibleDialog, showDialog] = React.useState({
+  const [email, setEmail] = useState("");
+  const [recovery, setRecovery] = useState(false);
+  const [visibleDialog, showDialog] = useState({
     visible: false,
     message: "",
   });

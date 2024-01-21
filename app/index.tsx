@@ -1,14 +1,43 @@
 import { StyleSheet } from "react-native";
-
-import { Text, View } from "../components/Themed";
-import { Button } from "@ui-kitten/components/ui";
+import { Layout, Text, Button } from "@ui-kitten/components/ui";
 
 export default function HomeScreen() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Page d'accueil</Text>
-      <Button style={styles.button}>Text/ACTIVE</Button>
-    </View>
+    <Layout style={styles.container}>
+      {/* Add logo */}
+      <Text category="h5" style={styles.title}>
+        Mes Bonnes Adresses
+      </Text>
+      <Text style={styles.description}>
+        Bienvenue sur l'application Mes Bonnes Adresses !{"\n"}
+        Fini les longues recherches sur internet pour trouver un restaurant,
+        {"\n"}
+        une boutique ou un service de qualité.
+        {"\n"}
+        Mes Bonnes Adresses vous permet de trouver et partager simplement
+        {"\n"}
+        les meilleures adresses autour de vous.
+      </Text>
+      <Layout style={styles.row}>
+        <Button
+          size="small"
+          onPress={() => {
+            //
+          }}
+        >
+          Inscription
+        </Button>
+        <Button
+          style={styles.button}
+          size="small"
+          onPress={() => {
+            //
+          }}
+        >
+          Connexion
+        </Button>
+      </Layout>
+    </Layout>
   );
 }
 
@@ -19,10 +48,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   title: {
-    fontSize: 20,
-    fontWeight: "bold",
+    marginBottom: 20,
+  },
+  description: {
+    textAlign: "center",
   },
   button: {
-    margin: 2,
+    margin: 20,
+  },
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
 });
