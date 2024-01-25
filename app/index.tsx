@@ -1,10 +1,16 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Image } from "react-native";
 import { Layout, Text, Button } from "@ui-kitten/components/ui";
+import { useRouter } from "expo-router";
 
 export default function HomeScreen() {
+  const router = useRouter();
+
   return (
     <Layout style={styles.container}>
-      {/* Add logo */}
+      <Image
+        source={require("../assets/images/logo.png")}
+        style={styles.logo}
+      />
       <Text category="h5" style={styles.title}>
         Mes Bonnes Adresses
       </Text>
@@ -22,7 +28,7 @@ export default function HomeScreen() {
         <Button
           size="small"
           onPress={() => {
-            //
+            router.replace("/auth/register");
           }}
         >
           Inscription
@@ -31,7 +37,7 @@ export default function HomeScreen() {
           style={styles.button}
           size="small"
           onPress={() => {
-            //
+            router.replace("/auth/login");
           }}
         >
           Connexion
@@ -47,8 +53,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  logo: {
+    width: 150,
+    height: 150,
+    marginBottom: 15,
+  },
   title: {
-    marginBottom: 20,
+    marginBottom: 15,
   },
   description: {
     textAlign: "center",

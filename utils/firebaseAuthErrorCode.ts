@@ -19,6 +19,9 @@ export function firebaseAuthErrorCode(errorCode: string): string {
     case "auth/weak-password":
       message = "Le mot de passe doit faire au moins 6 caractères !";
       break;
+    case "auth/requires-recent-login":
+      message = "Tu es resté trop longtemps inactif ! Reconnecte-toi pour effectuer cette action.";
+      break;
     default:
       message = "Une erreur est survenue ! Merci de réessayer plus tard.";
       break;

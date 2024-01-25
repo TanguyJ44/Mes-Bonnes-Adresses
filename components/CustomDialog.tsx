@@ -2,7 +2,7 @@ import { Button, Card, Text, Divider, Modal } from "@ui-kitten/components";
 import { StyleSheet } from "react-native";
 import React from "react";
 
-export function AuthDialog(props: {
+export function CustomDialog(props: {
   visible: boolean;
   message: string;
   onClose: () => void;
@@ -15,7 +15,7 @@ export function AuthDialog(props: {
     >
       <Card disabled={true}>
         <Text style={styles.marginBottom} category="h6">
-          🚨 Oups !
+          Informations
         </Text>
         <Text>{props.message}</Text>
         <Divider style={{ marginTop: 10 }} />

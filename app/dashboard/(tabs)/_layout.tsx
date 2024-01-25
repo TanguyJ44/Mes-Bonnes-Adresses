@@ -81,14 +81,14 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name="zero"
+        name="explore"
         options={{
           title: "Explorer",
           tabBarIcon: ({ color }) => <TabBarIcon name="map" color={color} />,
         }}
       />
       <Tabs.Screen
-        name="one"
+        name="address"
         options={{
           title: "Mes adresses",
           tabBarIcon: ({ color }) => (

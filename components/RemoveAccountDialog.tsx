@@ -30,7 +30,7 @@ export function RemoveAccountDialog(props: {
       .catch((error) => {
         if (error.code === "auth/requires-recent-login") {
           alert(
-            "Vous êtes resté inactif trop longtemps. Veuillez vous reconnecter pour supprimer votre compte."
+            "Tu es resté inactif trop longtemps. Tu dois te reconnecter à nouveau pour supprimer ton compte."
           );
           return;
         }
@@ -54,7 +54,7 @@ export function RemoveAccountDialog(props: {
         </Text>
         <Text style={styles.marginBottom}>
           Pour confirmer la suppression de votre compte, veuillez saisir le mot
-          "<b>supprimer</b>" dans le champ ci-dessous :
+          "supprimer" dans le champ ci-dessous :
         </Text>
         <Input
           placeholder="supprimer"
@@ -91,7 +91,7 @@ export function RemoveAccountDialog(props: {
 
 const styles = StyleSheet.create({
   modal: {
-    width: "40%",
+    width: "90%",
   },
   marginBottom: {
     marginBottom: 15,

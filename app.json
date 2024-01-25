@@ -28,7 +28,21 @@
       "favicon": "./assets/images/favicon.png",
       "build": { "babel": { "include": ["@ui-kitten/components"] } }
     },
-    "plugins": ["expo-router"],
+    "plugins": [
+      "expo-router",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Permet de choisir une photo de profil"
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Permets de localiser les adresses autour de vous"
+        }
+      ]
+    ],
     "experiments": {
       "typedRoutes": true
     }

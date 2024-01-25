@@ -12,7 +12,7 @@ import {
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "expo-router";
 import useAuthStatus from "./useAuthStatus";
-import { AuthDialog } from "../../components/AuthDialog";
+import { CustomDialog } from "../../components/CustomDialog";
 import { firebaseAuthErrorCode } from "../../utils/firebaseAuthErrorCode";
 import { auth } from "../../firebaseConfig";
 
@@ -95,7 +95,17 @@ const LoginScreen = () => {
           </Button>
         </Layout>
       </Card>
-      <AuthDialog
+      <Button
+        style={styles.marginTop}
+        size="small"
+        appearance="ghost"
+        onPress={() => {
+          router.replace("/");
+        }}
+      >
+        Retour à l'accueil
+      </Button>
+      <CustomDialog
         visible={visibleDialog.visible}
         message={visibleDialog.message}
         onClose={() => showDialog({ visible: false, message: "" })}
@@ -112,8 +122,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   card: {
-    width: "40%",
+    width: "90%",
     cursor: "default",
+  },
+  marginTop: {
+    marginTop: 15,
   },
   marginBottom: {
     marginBottom: 15,
